@@ -33,3 +33,17 @@ Your reflection should be approximately 150–200 words and address the followin
 2. What challenges did you encounter, and how did you overcome them?
 3. Compare OOP to procedural programming.
 4. Discuss the benefits of maintainability and reusability and apply this managing overhead, practical application development, and future use.
+
+## Implementation
+
+I used a `NetworkDevice` parent class and a `Router` child class. The router inherited the hostname and IP address from `NetworkDevice`, then added its own model and network list.
+
+I showed how class and instance namespaces work by creating two router objects, accessing the class variable in different ways, and adding a location to only one router. I also used `__dict__` to show what was stored in each object and in the class.
+
+For the copying section, I created a router with nested list data and made both a shallow copy and a deep copy. After changing the original nested list, the shallow copy changed with it, while the deep copy stayed separate.
+
+For my extra feature, I added a `network_count()` method that returned how many networks were stored in the router.
+
+I also tested a router with no networks assigned to make sure the program handled an empty list correctly. The router displayed an empty network list and returned a network count of 0.
+
+A setup like this could be used as the starting point for a simple network inventory program that keeps track of routers and the networks assigned to them.
