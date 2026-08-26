@@ -22,7 +22,10 @@ def insert_at(lst, index, value):
     - Use comments to explain how insertion performance may vary depending on
       where the insertion occurs.
     """
-    pass
+    # Insert the new device at the requested position.
+    # Devices after this index shift one position to the right.
+    # Inserting near the beginning takes more work because more items must shift.
+    lst.insert(index, value)
 
 
 def delete_at(lst, index):
@@ -36,7 +39,12 @@ def delete_at(lst, index):
     - Return None if the index is invalid.
     - Add comments explaining why index validation and safe deletion are important.
     """
-    pass
+    # Check the index first so an invalid position does not cause an error.
+    if 0 <= index < len(lst):
+        return lst.pop(index)
+
+    # Return None when the requested position does not exist.
+    return None
 
 
 def search_value(lst, value):
@@ -49,7 +57,14 @@ def search_value(lst, value):
     - Return -1 if the value is not found.
     - Add comments explaining why this is a linear search and why it scans sequentially.
     """
-    pass
+    # Check each device one at a time from the beginning of the list.
+    # This is a linear search because it scans the list in order.
+    for index in range(len(lst)):
+        if lst[index] == value:
+            return index
+
+    # Return -1 if the device was not found.
+    return -1
 
 
 def main():
@@ -70,7 +85,23 @@ def main():
     # 5. Use comments to explain each step in the implementation.
 
     print("\n=== INSERTION TESTS ===")
-    print("TODO: Create a list and demonstrate insertions.")
+
+    # Create a small IT asset inventory.
+    devices = ["Firewall-01", "Switch-01", "Server-01"]
+
+    print("Original inventory:", devices)
+
+    # Insert a device at the beginning.
+    insert_at(devices, 0, "Router-01")
+    print("After beginning insertion:", devices)
+
+    # Insert a device in the middle.
+    insert_at(devices, 2, "AccessPoint-01")
+    print("After middle insertion:", devices)
+
+    # Insert a device at the end.
+    insert_at(devices, len(devices), "Workstation-01")
+    print("After end insertion:", devices)
 
     # ===============================
     # TODO (Student): DELETION TESTS
@@ -86,7 +117,22 @@ def main():
     # 4. Use comments to clearly explain what is happening in the output.
 
     print("\n=== DELETION TESTS ===")
-    print("TODO: Demonstrate deletions from multiple positions.")
+
+    # Delete the first device in the inventory.
+    removed = delete_at(devices, 0)
+    print("Removed from beginning:", removed)
+    print("Inventory now:", devices)
+
+    # Delete a device from the middle.
+    middle_index = len(devices) // 2
+    removed = delete_at(devices, middle_index)
+    print("Removed from middle:", removed)
+    print("Inventory now:", devices)
+
+    # Delete the last device in the inventory.
+    removed = delete_at(devices, len(devices) - 1)
+    print("Removed from end:", removed)
+    print("Inventory now:", devices)
 
     # ===============================
     # TODO (Student): SEARCH TESTS
@@ -98,8 +144,25 @@ def main():
     # 3. Display the search results with clear explanations.
     # 4. Use comments to explain each step.
 
+        # ===============================
+    # TODO (Student): SEARCH TESTS
+    # ===============================
+    #
+    # Requirements:
+    # 1. Search for a value that exists.
+    # 2. Search for a value that does not exist.
+    # 3. Display the search results with clear explanations.
+    # 4. Use comments to explain each step.
+
     print("\n=== SEARCH TESTS ===")
-    print("TODO: Demonstrate searching for values.")
+
+    # Search for a device that exists in the inventory.
+    found_index = search_value(devices, "Server-01")
+    print("Search for Server-01:", found_index)
+
+    # Search for a device that is not in the inventory.
+    missing_index = search_value(devices, "Server-99")
+    print("Search for Server-99:", missing_index)
 
     # ===============================
     # TODO (Student): EDGE CASES
@@ -115,7 +178,15 @@ def main():
     # - Use comments to explain each edge case.
 
     print("\n=== EDGE CASES ===")
-    print("TODO: Demonstrate at least two edge cases.")
+
+        # Try to delete a device using an invalid index.
+    invalid_delete = delete_at(devices, 99)
+    print("Invalid delete result:", invalid_delete)
+
+    # Try to delete from an empty inventory.
+    empty_inventory = []
+    empty_delete = delete_at(empty_inventory, 0)
+    print("Delete from empty inventory:", empty_delete)
 
 
 
