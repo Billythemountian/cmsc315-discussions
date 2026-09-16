@@ -31,9 +31,20 @@ def main():
     #    behaves like a hash table.
     # 4. Display the contents of the dictionary.
 
-
     print("\n=== INSERT OPERATIONS ===")
-    print("TODO: Create a dictionary and add multiple key-value pairs.")
+
+    # Create an empty dictionary for help desk tickets.
+    tickets = {}
+
+    # The ticket number is the key and the ticket status is the value.
+    tickets["INC1001"] = "Open"
+    tickets["INC1002"] = "In Progress"
+    tickets["INC1003"] = "Waiting on User"
+    tickets["INC1004"] = "Open"
+    tickets["INC1005"] = "Resolved"
+
+    # Python dictionaries use hashing to quickly find a value by its key.
+    print("Help desk tickets:", tickets)
 
     # ===============================
     # TODO (Student): LOOKUP OPERATIONS
@@ -45,7 +56,10 @@ def main():
     # 3. Add meaningful comments to explain how the lookup works.
 
     print("\n=== LOOKUP OPERATIONS ===")
-    print("TODO: Demonstrate successful key lookups.")
+
+    # Use the ticket number to quickly find its current status.
+    print("INC1001 status:", tickets["INC1001"])
+    print("INC1003 status:", tickets["INC1003"])
 
     # ===============================
     # TODO (Student): UPDATE OPERATIONS
@@ -58,7 +72,13 @@ def main():
     #    a new value.
 
     print("\n=== UPDATE OPERATIONS ===")
-    print("TODO: Demonstrate updating an existing key.")
+
+    print("Before update:", tickets)
+
+    # Assigning a new value to the same key updates the ticket.
+    tickets["INC1001"] = "Resolved"
+
+    print("After update:", tickets)
 
     # ===============================
     # TODO (Student): DELETE OPERATIONS
@@ -70,7 +90,13 @@ def main():
     # 3. Use comments to explain what happens when a key is removed.
 
     print("\n=== DELETE OPERATIONS ===")
-    print("TODO: Demonstrate deleting a key-value pair.")
+
+    print("Before deletion:", tickets)
+
+    # Remove a resolved ticket from the dictionary.
+    del tickets["INC1005"]
+
+    print("After deletion:", tickets)
 
     # ===============================
     # TODO (Student): EDGE CASES
@@ -87,8 +113,16 @@ def main():
     # Explain what happens in each case.
 
     print("\n=== EDGE CASES ===")
-    print("TODO: Demonstrate and explain edge cases.")
 
+    # Edge case 1: Look up a ticket that does not exist.
+    # get() returns the message instead of causing an error.
+    missing_ticket = tickets.get("INC9999", "Ticket not found")
+    print("Missing ticket lookup:", missing_ticket)
+
+    # Edge case 2: Try to remove a ticket that does not exist.
+    # pop() with a default value prevents an error.
+    removed_ticket = tickets.pop("INC9999", "Ticket not found")
+    print("Missing ticket removal:", removed_ticket)
 
 
 if __name__ == "__main__":
